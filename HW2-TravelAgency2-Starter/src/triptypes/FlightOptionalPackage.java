@@ -1,0 +1,104 @@
+// COURSE: CSCI1620
+// TERM: Spring 2020
+//
+// NAME: Nathan Kovar
+// RESOURCES: No resources used
+
+package triptypes;
+import java.util.Arrays;
+public abstract class FlightOptionalPackage extends VacationPackage
+{
+	/**
+	 * Stores the Flight details.
+	 */
+	private Flight[] f;
+	
+	/**
+	 * Initializes details for a newly created FlightOptionalPackage.
+	 * Upon creation, this package will contain no flight bookings.
+	 * However, flight legs can be added at a later point.
+	 * @param name - The promotional name of this package.
+	 * @param numDays - The number of days this travel package covers.
+	 */
+	public FlightOptionalPackage(java.lang.String name, int numDays)
+	{
+		super(name, numDays);
+	}
+	/**
+	 * Adds a single one-way flight to this package. Round trips and
+	 * layovers are handled by multiple calls to addFlightLeg with one
+	 * call for each flight. Flights must be added in chronological order,
+	 * with the soonest flight added first. A maximum of up to 12
+	 * flights can be stored within a FlightOptionalPackage.
+	 * @param details - A valid flight object to append to this itinerary.
+	 * Invalid values (ie, null) or flights in excess of the 12 maximum
+	 * will be ignored and will not impact this FlightOptionalPackage object.
+	 */
+	public void addFlightLeg(Flight details)
+	{
+		if (details == null)
+		{
+			
+		}
+		else if (f.length <= 12)
+		{
+			f = Arrays.copyOf(f, f.length + 1);
+			f[f.length - 1] = details;
+		}
+	}
+	/**
+	 * A predicate method for identifying whether a concrete object has
+	 * at least one flight attached to it.
+	 * @return true when at least one flight has been added, false otherwise.
+	 */
+	public boolean hasFlights()
+	{
+		if (f[0] == null)
+		{
+			return false;
+		}
+		else
+		{
+			return true;
+		}
+	}
+	/**
+	 * Retrieves the current itinerary for this travel package. Flights
+	 * are positioned in the returned array in the order in which they were
+	 * added to this FlightOptionalPackage.
+	 * @return The current itinerary array of Flight objects. null when no flights
+	 * have been added yet.
+	 */
+	public Flight[] getFlightItinerary()
+	{
+		if (f[0] == null)
+		{
+			return null;
+		}
+		else
+		{
+			return f;
+		}
+	}
+	/**
+	 * The total cost of all legs in this FlightOptionalPackage.
+	 * @return The sum of all individual flight costs in this package.
+	 */
+	public double getFlightCosts()
+	{
+		double price = 0;
+		for (int i = 0; i < f.length; i++)
+		{
+			price += f[i].getPrice();
+		}
+		return price;
+	}
+	
+	public java.lang.String toString()
+	{
+		String s = "$  " + (getPrice() + getFlightCosts()) + "  " + super.getName() 
+			+ " (Flight Included)" + System.lineSeparator() 
+			+ "$  " + getPrice() + "  " + super.getName() + " (Flight Not Included)";
+		return s;
+	}
+}
