@@ -17,7 +17,7 @@ public class VacationPackageCollection
 	 */
 	public VacationPackageCollection()
 	{
-		vpc = new VacationPackage[];
+		vpc = new VacationPackage[25];
 	}
 	/**
 	 * Retrieves the number of trip packages that have been
@@ -49,12 +49,26 @@ public class VacationPackageCollection
 	{
 		return vpc;
 	}
-	
+	/**
+	 * Adds a single trip package to the collection at the next
+	 * available position. If adding this trip would result in more
+	 * than 25 total packages, it will not be added to the collection.
+	 * @param trip - The trip to add to the collection.
+	 */
 	public void addVactation(VacationPackage trip)
 	{
-		for (int i = 0, i < vpc.length; i++)
+		for (int i = 0; i < vpc.length; i++)
 		{
-			if ()
+			if (!vpc[i].equals(null))
+			{
+				vpc[i] = trip;
+				break;
+			}
 		}
+	}
+	
+	public VacationPackageCollection filterVacationsFor(int selection)
+	{
+		
 	}
 }
