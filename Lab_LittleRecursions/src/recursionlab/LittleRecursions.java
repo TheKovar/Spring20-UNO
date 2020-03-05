@@ -1,3 +1,9 @@
+// COURSE: CSCI1620
+// TERM: Spring 2020
+//
+// NAME: Nathan Kovar
+// RESOURCES: No resources used
+
 package recursionlab;
 
 ////////////////////////////////////////////////////////////
@@ -34,8 +40,14 @@ public class LittleRecursions
 	 */
 	public static boolean isPalindrome(String s)
 	{
-		//TODO: Replace with your solution.
-		return false;
+		if (s == null) 
+		{ 
+			return false; 
+		} 
+		
+		String reverse = reverseSome(s); 
+		
+		return s.equals(reverse); 
 	}
 	
 	/**
@@ -53,8 +65,11 @@ public class LittleRecursions
 	 */
 	public static String reverseSome(String s)
 	{
-		//TODO: Replace with your solution.
-		return "";
+		if (s == null || s.length() <= 1) 
+		{ 
+			return s; 
+		} 
+		return reverseSome(s.substring(1)) + s.charAt(0); 
 	}
 	
 	/**
@@ -71,8 +86,12 @@ public class LittleRecursions
 	 */
 	public static int gcd(int x, int y)
 	{
-		//TODO: Replace with your solution.
-		return 0;
+		if (x == 0)
+		{
+			return y;
+		}
+		
+		return gcd(y % x, x);
 	}
 	
 	/**
@@ -86,9 +105,26 @@ public class LittleRecursions
 	 */
 	public static int sumPositive(int[] array)
 	{
-		//HINT: A helper method might be useful here...
+		if (counter(array) <= 0)
+		{
+			return 0;
+		}
 		
-		//TODO: Replace with your solution.
-		return 0;
+		return sumPositive(array) + array[counter(array) - 1];
+		
+	}
+	/**
+	 * Used to count the array for sumPosttive.
+	 * @param n - input array
+	 * @return current length of the array
+	 */
+	public static int counter(int[] n)
+	{
+		if (n == null)
+		{
+			return 0;
+		}
+		int s = n.length;
+		return s;
 	}
 }
